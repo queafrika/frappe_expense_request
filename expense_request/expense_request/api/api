@@ -1,0 +1,8 @@
+import frappe
+
+@frappe.whitelist()
+def create_requisition(*args, **kwargs):
+    beneficiary = kwargs.get("beneficiary")
+    mode_of_payment = kwargs.get("mode_of_payment")
+    remarks = kwargs.get("remarks")
+    frappe.utils.validate_email_address()

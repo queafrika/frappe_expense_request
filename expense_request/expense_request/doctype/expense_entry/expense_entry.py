@@ -22,3 +22,12 @@ class ExpenseEntry(Document):
                 rje.posting_date = frappe.utils.nowdate()
                 rje.submit()
 
+    def on_submit(self):
+        # autofill remarks with expense type if empty
+        if not self.remarks:
+            self.remarks = ""
+            for entry in self.expenses:
+                self.remarks += entry.expense_account + ": " + str(entry.amount) + "\n"
+            
+            self.save()
+            

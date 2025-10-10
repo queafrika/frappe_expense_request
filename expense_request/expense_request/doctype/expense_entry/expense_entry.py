@@ -30,5 +30,4 @@ class ExpenseEntry(Document):
         for entry in self.expenses:
             self.remarks += entry.expense_account + ": " + str(entry.amount) + "\n"
         
-        self.save()
             
